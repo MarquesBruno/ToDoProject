@@ -50,7 +50,7 @@ namespace ToDoProject.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutToDo(int id, ToDo toDo)
         {
-            if (id != toDo.ToDoId)
+            if (id != toDo.ToDoId || toDo.Situation==true)
             {
                 return BadRequest();
             }
@@ -82,13 +82,7 @@ namespace ToDoProject.Controllers
 
         [HttpPost]
         public async Task<ActionResult<ToDo>> PostToDo(ToDo toDo)
-        {
-            /*if (toDo.Description == "")
-            {
-                
-                
-                return StatusCode((int)HttpStatusCode.NotFound);
-            }*/
+        {          
 
             _context.ToDoes.Add(toDo);
             await _context.SaveChangesAsync();
